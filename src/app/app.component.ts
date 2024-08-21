@@ -1,13 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CrearCitaComponent } from './components/crear-cita/crear-cita.component';
+import { ListCitasComponent } from './components/list-citas/list-citas.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CrearCitaComponent, ListCitasComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'] // Corrección aquí
 })
 export class AppComponent {
-  title = 'app_citas';
+  listCitas: any[] = [];
+
+  agregarCita(cita: any) {
+    this.listCitas.push(cita);
+    console.log(this.listCitas);
+  }
+
+  eliminarCitaListado(index:number) {
+    this.listCitas.splice(index,1);
+  }
 }
